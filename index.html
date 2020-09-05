@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Students</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <style>
+        .custom__card{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .custom__card__hover:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .custom__card__footer {
+            background-color: white!important;
+            padding: .75rem 1.25rem;
+            border-top: 1px solid rgb(190, 187, 187);
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css'/>
+</head>
+  <body>
+
+    <div class="container-fluid p-3 mt-5">
+        <h1 class="text-center font-weight-bold">Students in Harvard University</h1>
+        <div class="row mt-5">
+            <div class="col-md-12 col-lg-8">
+                <div class="card custom__card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-stripped table-bordered">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th width="3%">No.</th>
+                                        <th>Name</th>
+                                        <th>Birth Date</th>
+                                        <th>Address</th>
+                                        <th width="3%">Menu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <div class="card custom__card">
+                    <form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="">Name</label>
+                            <input type="text" name="name" placeholder="Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="">Birth Date</label>
+                            <input type="date" name="birth_date" placeholder="Birth Date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="">Address</label>
+                            <textarea placeholder="Address" name="address" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="custom__card__footer ">
+                        <div class="row justify-content-center">
+                            <div class="col-xs col-md col-sm">
+                                <button type="submit" class="btn btn-block btn-md font-weight-bold  btn-primary">Kirim</button>
+                            </div>
+                            <div class="col-xs col-md col-sm">
+                                <button type="button" class="btn btn-block btn-md font-weight-bold btn-secondary">Batal</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Update Student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="">Name</label>
+                        <input type="text" name="name" data-status="0" id="name" placeholder="Name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="">Birth Date</label>
+                        <input type="date" name="birth_date" id="birth_date" placeholder="Birth Date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="">Address</label>
+                        <textarea placeholder="Address" id="address" name="address" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal">Batal</button>
+                    <button id="button-modal" type="submit" class="btn btn-primary font-weight-bold">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+      
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js'></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js'></script>
+        <script>
+
+            students() // call function student to display data in table
+            moment.locale('eg') // set moment language to indonesia
+            async function fetchData(url,request,method) {
+                let res = await axios({
+                    method: method, // method 
+                    url: url, // url api
+                    data: request // data request from form
+                })
+                return res // return result from requested api
+            }
+
+          function students() { 
+            $('tbody').html('') // set tbody to empty
+
+              let url = "http://127.0.0.1:8002/api/v1/students" // url get all students
+              let request // set data request to null
+              let method = 'get' // set method get
+
+              fetchData(url,request,method) // call function fetchData 
+              .then((res) => {
+                $.each(res.data.data,function(index,value){ // loop result data from request api
+                    // append data to tbody in table
+                    $('tbody').append(`
+                        <tr>
+                            <td scope="row">${index + 1}.</td>
+                            <td>${value.name}</td>
+                            <td>${moment(value.birth_date).format('DD MMMM YYYY')}</td>
+                            <td>${value.address}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button type="button" onclick="modalForm($(this),${value.id},1)" class="btn btn-sm btn-warning"><i class="fas fa-edit    "></i></button>
+                                    <button type="button" onclick="modalDetail(${value.id})" class="btn btn-sm btn-info"><i class="fas fa-eye    "></i></button>
+                                    <button type="button" onclick="deleteRequest(${value.id})" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt    "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    `)
+                })
+                $('table').DataTable() // set datatable to table element
+            })
+          }
+
+          $('form').submit(function(e){
+              let status = $('#name').data('status') // call data status 
+              let id = $('#name').data('id') // call id student from data id 
+              if (status == 1) { // update student if status true
+                var urlCondition = "http://127.0.0.1:8002/api/v1/students/"+id // url api put request
+                var methodCondition = 'put' // set method put
+              }
+              else { // create student if status false
+                var urlCondition = "http://127.0.0.1:8002/api/v1/students" // url api post request 
+                var methodCondition = 'post' // set method post
+              }
+
+              e.preventDefault() // disable browser relaod
+                let url = urlCondition // url from condition result
+                let data = $(this).serialize() // get data from form input
+                let method = methodCondition // method from condition result
+
+                fetchData(url,data,method) // call function fetchData
+                .then(res => {
+                    if (status == 1) { // if update student
+                        $('#modalForm').modal('hide') // hide modal
+                    }
+                    $('table').DataTable().destroy() // destroy datatable
+                    students() // call function student
+                    $(this)[0].reset() // reset form input value
+                })
+          }) 
+
+          function modalForm(element,id,status) { // show modal edit student
+                $('.modal-title').text("Update Student") // set text modal title
+                $('#button-modal').removeClass('d-none') // show submit button modal after hide in show modal detail  
+                $('#name').removeAttr('readonly',true) // remove attribute readonly to form input name
+                $('#address').removeAttr('readonly',true) // remove attribute readonly to form input address
+                $('#birth_date').removeAttr('readonly',true) // remove attribute readonly to form input birth_date
+                let url = "http://127.0.0.1:8002/api/v1/students/"+id // get single student
+                let data // set data to null
+                let method = 'get' // set method get
+                fetchData(url,data,method) // call function fetchData
+                .then((res) => { 
+                    $('#name').val(res.data.data.name) // set value to form input name
+                    $('#name').data('id',res.data.data.id) // set id to form input name data id
+                    $('#name').data('status',1) // set data status (1 for update 0 for create)
+                    $('#address').val(res.data.data.address) // set value to form input address
+                    $('#birth_date').val(res.data.data.birth_date) // set value to form input birth date
+                    $('#modalForm').modal('show') // call modal
+                })
+          }
+
+          function modalDetail(id) { // show detail student
+                let url = "http://127.0.0.1:8002/api/v1/students/"+id // get single student
+                let data // set data to null
+                let method = 'get' // set method get
+                fetchData(url,data,method) // call function fectData
+                .then((res) => {
+                    $('#name').val(res.data.data.name) // set value to form input name
+                    $('#name').attr('readonly',true) // set attribute readonly to form input name
+                    $('#address').attr('readonly',true) // set attribute readonly to form input address
+                    $('#birth_date').attr('readonly',true) // set attribute readonly to form input birth_date
+                    $('.modal-title').text("Detail Student") // set text modal title
+                    $('#name').data('status',1) // set data status (1 for update 0 for create)
+                    $('#address').val(res.data.data.address) // set value to form input address
+                    $('#birth_date').val(res.data.data.birth_date) // set value to form input birth_date
+                    $('#modalForm').modal('show') // call modal
+                    $('#button-modal').addClass('d-none') // hide submit button in modal
+                })
+          }
+
+          function deleteRequest(id) { // delete student
+            let url = "http://127.0.0.1:8002/api/v1/students/"+id // url api delete student
+            let method = 'delete' // set method delete
+            let data // set data to null
+            fetchData(url,data,method) // call function fetchData
+            .then((res) => {
+                $('table').DataTable().destroy() // destroy datatable 
+                students() // call function student
+            })
+          }
+      </script>
+  </body>
+</html>
